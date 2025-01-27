@@ -1,15 +1,17 @@
 --- Handlers module
 -- This module defines various handlers for processing messages.
+local ao_utils = require('src.utils.ao-utils')
+local nft_manager = require('src.nft-manager')
+local token = require('src.token')
 
-local math_helper = require('src.utils.math_helper')
+-- Credit Notice Handler
+Handlers.add('creditNotice',
+    Handlers.utils.hasMatchingTag('Action', 'Credit-Notice'),
+    ao_utils.wrapHandler(token.handleCreditNotice)
+)
 
---- Example handler that adds two big integers using hasMatchingTag.
-Handlers.add("add_numbers",
-    Handlers.utils.hasMatchingTag("Action", "AddNumbers"),
-    function(msg)
-        -- Convert inputs to bint objects and add
-        local result = math_helper.add(msg.Data.num1, msg.Data.num2)
-        print("Result:", tostring(result))
-        return tostring(result)
-    end
+-- Query NFT Count Handler
+Handlers.add('queryNFTCount',
+    Handlers.utils.hasMatchingTag('Action', 'Query-NFT-Count'),
+    ao_utils.wrapHandler(nft_manager.handleNFTCount)
 )
