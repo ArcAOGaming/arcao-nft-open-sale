@@ -1,0 +1,12 @@
+{
+  "name": "ping-ping",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "luabundle": "^1.6.0",
+    "@permaweb/aoconnect": "^0.0.45"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0"
+  }
+}

@@ -1,0 +1,52 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22'
+
+    - name: Install dependencies
+      run: make setup
+
+    - name: Install additional dependencies
+      run: make install
+
+    - name: Deploy with AOS
+      run: |
+        make deploy
+        # Placeholder for capturing the process ID
+        # You might need to parse the output to capture the process ID
+
+    - name: Upload Process ID Log
+      uses: actions/upload-artifact@v3
+      with:
+        name: process-id
+        path: process_id.log
+
+    - name: Read Process ID
+      id: read_process_id
+      run: echo "PROCESS_ID=$(cat process_id.log)" >> $GITHUB_ENV
+
+    - name: Create GitHub Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: "release-${{ github.run_id }}"
+        release_name: "AOS Deployment"
+        body: "Process ID: ${{ env.PROCESS_ID }}"
+        draft: false
+        prerelease: false
