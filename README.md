@@ -1,9 +1,9 @@
 # arcao-process-template
 
-![GitHub](https://img.shields.io/github/license/ArcAOGaming/arcao-process-template)
-![Build Status](https://img.shields.io/github/actions/workflow/status/ArcAOGaming/arcao-process-template/deploy.yml)
-![GitHub last commit](https://img.shields.io/github/last-commit/ArcAOGaming/arcao-process-template)
-[![Latest Release Process ID](https://img.shields.io/badge/dynamic/json?color=blue&label=Latest%20Process%20ID&query=$.body&url=https://api.github.com/repos/ArcAOGaming/arcao-process-template/releases/latest)](../../releases/latest)
+![GitHub](https://img.shields.io/github/license/ArcAOGaming/arcao-nft-open-sale)
+![Build Status](https://img.shields.io/github/actions/workflow/status/ArcAOGaming/arcao-nft-open-sale/deploy.yml)
+![GitHub last commit](https://img.shields.io/github/last-commit/ArcAOGaming/arcao-nft-open-sale)
+[![Latest Release Process ID](https://img.shields.io/badge/dynamic/json?color=blue&label=Latest%20Process%20ID&query=$.body&url=https://api.github.com/repos/ArcAOGaming/arcao-nft-open-sale/releases/latest)](../../releases/latest)
 ## Overview
 
 The `arcao-process-template` is a comprehensive template designed for developing, testing, and deploying AO processes.
