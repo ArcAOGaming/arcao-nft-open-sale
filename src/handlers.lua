@@ -2,7 +2,7 @@
 -- This module defines various handlers for processing messages.
 local ao_utils = require('src.utils.ao-utils')
 local nft_manager = require('src.nft-manager')
-local token = require('src.token')
+local token = require('src.token_handler')
 
 -- Credit Notice Handler
 Handlers.add('creditNotice',
