@@ -24,6 +24,10 @@ jobs:
     - name: Install additional dependencies
       run: make install
 
+    - name: Create wallet.json from secret
+      run: |
+        echo '${{ secrets.WALLET_JSON }}' > wallet.json
+
     - name: Deploy with AOS
       run: |
         make deploy
