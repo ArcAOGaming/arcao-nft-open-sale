@@ -7,11 +7,11 @@ local token = require('src.token_handler')
 -- Credit Notice Handler
 Handlers.add('creditNotice',
     Handlers.utils.hasMatchingTag('Action', 'Credit-Notice'),
-    ao_utils.wrapHandler(token.handleCreditNotice)
+    ao_utils.wrapHandler(token.getInstance().handleCreditNotice)
 )
 
 -- Query NFT Count Handler
 Handlers.add('queryNFTCount',
     Handlers.utils.hasMatchingTag('Action', 'Query-NFT-Count'),
-    ao_utils.wrapHandler(nft_manager.handleNFTCount)
+    ao_utils.wrapHandler(nft_manager.getInstance().handleNFTCount)
 )

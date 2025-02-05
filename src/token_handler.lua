@@ -4,8 +4,8 @@ local M = {}
 local function TokenHandler(deps)
     deps = deps or {}
     -- Use provided dependencies or defaults
-    local paymentManager = deps.paymentManager or require("src.payments")
-    local nftManager = deps.nftManager or require("src.nft-manager")
+    local paymentManager = deps.paymentManager or require("src.payments").getInstance()
+    local nftManager = deps.nftManager or require("src.nft-manager").getInstance()
     local tokenUtils = deps.tokenUtils or require("src.utils.token_utils")
 
     -- Create a local table to hold module functions
