@@ -9,10 +9,9 @@ local nft_process_ids = {
     ["257pKTWG0W-Y4aWXwjBdB6-xl5Y5NEmYw4bohp9uMs8"] = true,
     ["KhhIyqJxRaLh73nTHJTQk5x1qUElb9T_vsyL30aoFtw"] = true,
     ["hFEA0nd51zUW2kzTMjzeACPrZrTqTC2IXmtbOyb8LVA"] = true,
-    ["MP21WvajzN8YTVvUFmWTGUXNToEfoxE3hFb2Cpnwjo0"] = true
-    ["pjNMPZCnBu1sq5GosKtIJO_6EAMWua_tfTacsxKxSfE"] = true
+    ["MP21WvajzN8YTVvUFmWTGUXNToEfoxE3hFb2Cpnwjo0"] = true,
+    ["pjNMPZCnBu1sq5GosKtIJO_6EAMWua_tfTacsxKxSfE"] = true,
     ["KmIZ5NvX2w6APn7WYS3MJhFgXlbGDOa1Qe9lsk4Pu2M"] = true
-    
 }
     
 
