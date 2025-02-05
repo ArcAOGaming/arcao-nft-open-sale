@@ -12,7 +12,7 @@ dependencies = {
    "lua >= 5.3",
    "busted >= 2.1.1",  -- Adding Busted dependency
    "ldoc",
-   "json"
+   "json4lua"
 }
 build = {
    type = "builtin",
