@@ -1,3 +1,5 @@
+local json = require("json")
+
 local AOUtils = {}
 AOUtils.__index = AOUtils
 
