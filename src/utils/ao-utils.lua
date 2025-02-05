@@ -34,7 +34,7 @@ end
 
 function AOUtils.wrapHandler(handlerFn)
     return function(msg)
-        local success = xpcall(function() return handlerFn(msg) end, errorHandler)
+        local success = xpcall(function() return handlerFn(msg) end, _handleError)
         if not success then
            if msg.Sender == nil then
               ao.send(sendResponse(msg.From, "Error", { message = "An unexpected error occurred. Please try again later." }))
