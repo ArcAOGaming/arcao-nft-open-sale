@@ -22,6 +22,7 @@ const wallet = JSON.parse(walletData);
 const bundledLua = bundle('./src/main.lua', {
     luaVersion: '5.3',
     force: true,
+    ignoredModuleNames: ["json"],
     paths: [
         'lib/share/lua/5.3/?.lua',
         '?.lua',
