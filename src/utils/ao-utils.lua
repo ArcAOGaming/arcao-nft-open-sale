@@ -19,7 +19,8 @@ end
 local function _handleError(msg)
     local target = _getErrorTarget(msg)
     ao.send(_createResponse(target, "Error", {
-        message = "An unexpected error occurred. Please try again later."
+        message = "An unexpected error occurred. Please try again later.",
+        log = msg
     }))
 end
 
@@ -37,14 +38,7 @@ end
 function AOUtils.wrapHandler(handlerFn)
     return function(msg)
         local success = xpcall(function() return handlerFn(msg) end, _handleError)
-        if not success then
-           if msg.Sender == nil then
-              ao.send(_createResponse(msg.From, "Error", { message = "An unexpected error occurred. Please try again later." }))
-           else
-              ao.send(_createResponse(msg.Sender, "Error", { message = "An unexpected error occurred. Please try again later." }))
-           end
-        end
-     end
+    end
 end
 
 return AOUtils
