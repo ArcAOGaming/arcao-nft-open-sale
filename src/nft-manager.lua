@@ -14,9 +14,29 @@ local function NFTManager(deps)
     local stored_nfts = {}
 
     -- Public methods
+    function self.returnNFTs(msg)
+        if not AOUtils.verifyProcessOwner(msg) then
+            return false
+        end
+
+        -- Get recipient from tag or default to owner
+        local recipient = msg.Tags["Recipient"]
+        local sent_count = 0
+
+        -- Iterate backwards through stored_nfts to safely remove while iterating
+        for i = #stored_nfts, 1, -1 do
+            if self.sendNFT(stored_nfts[i], recipient) then
+                table.remove(stored_nfts, i)
+                sent_count = sent_count + 1
+            end
+        end
+
+        return AOUtils.reply(msg, string.format("%d NFTs have been sent to %s", sent_count, recipient))
+    end
+
     function self.handleNFTCount(msg)
         local count = #stored_nfts
-        return AOUtils.reply(count)
+        return AOUtils.reply(msg, count)
     end
 
     function self.getStoredNFTCount()
@@ -27,8 +47,15 @@ local function NFTManager(deps)
         return constants.NFT_PROCESS_IDS[processId] or false
     end
 
-    function self.sendNFT(recipient)
+    function self.sendNextNFT(recipient)
+        local index = #stored_nfts
+        self.sendNFT(stored_nfts[index], recipient)
+        table.remove(stored_nfts, index)
+    end
+
+    function self.sendNFT(processId, recipient)
         -- TODO: Implement NFT sending logic
+        AOUtils.sendTransfer(processId, recipient, "1")
         print("Sending NFT to " .. recipient)
         return true
     end

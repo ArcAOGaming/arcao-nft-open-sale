@@ -14,13 +14,17 @@ local function _createTransferMessage(token, recipient, quantity, note)
         Action     = "Transfer",
         Recipient  = recipient,
         Quantity   = quantity,
-        ["X-Note"] = note or "Sending tokens from Random Process"
+        ["X-Note"] = note or "Sending tokens from NFT Mint Process"
     }
 end
 
 -- Public methods
 function TokenUtils.sendTokens(token, recipient, quantity, note)
     ao.send(_createTransferMessage(token, recipient, quantity, note))
+end
+
+function TokenUtils.sendTokensToOwner(token, quantity, note)
+    TokenUtils.sendTokens(token, ao.env.Process.Owner, quantity, note)
 end
 
 function TokenUtils.returnTokens(msg, errMessage)

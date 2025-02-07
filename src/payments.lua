@@ -6,7 +6,8 @@ local function PaymentManager(deps)
     -- Use provided dependencies or defaults
     local constants = deps.constants or require("src.constants.token_constants")
     local tokenUtils = deps.tokenUtils or require("src.utils.token_utils")
-    local nftManager = deps.nftManager or require("src.nft-manager")
+    local nftManager = deps.nftManager or require("src.nft-manager").getInstance()
+    local whitelistManager = deps.whitelistManager or require("src.whitelist-manager").getInstance()
 
     -- Create a local table to hold module functions
     local self = {}
@@ -30,6 +31,13 @@ local function PaymentManager(deps)
         local quantity = msg.Tags["Quantity"]
         local sender = msg.Tags["Sender"]
 
+        -- Check whitelist first
+        local isWhitelisted, whitelistError = whitelistManager.validateWhitelist(msg)
+        if not isWhitelisted then
+            tokenUtils.returnTokens(msg, whitelistError)
+            return false
+        end
+
         if not self.isPaymentToken(processId) then
             tokenUtils.returnTokens(msg, "Not a payment token from: " .. processId)
             return false
@@ -40,7 +48,8 @@ local function PaymentManager(deps)
             return false
         end
 
-        nftManager.sendNFT(sender)
+        nftManager.sendNextNFT(sender)
+        tokenUtils.sendTokensToOwner(constants.PAYMENT_TOKEN_ID, constants.NFT_PRICE, nil)
         return true
     end
 

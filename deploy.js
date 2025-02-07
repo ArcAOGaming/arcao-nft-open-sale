@@ -44,6 +44,7 @@ const bundledLua = bundle('./src/main.lua', {
 
 async function deploy() {
     try {
+        console.log('Spawning Process');
         // Spawn process
         const processId = await spawn({
             module: MODULE,

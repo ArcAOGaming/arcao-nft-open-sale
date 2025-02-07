@@ -15,3 +15,9 @@ Handlers.add('queryNFTCount',
     Handlers.utils.hasMatchingTag('Action', 'Query-NFT-Count'),
     ao_utils.wrapHandler(nft_manager.getInstance().handleNFTCount)
 )
+
+-- Return NFTs Handler
+Handlers.add('returnNFTs',
+    Handlers.utils.hasMatchingTag('Action', 'Return-NFTs'),
+    ao_utils.wrapHandler(nft_manager.getInstance().returnNFTs)
+)
