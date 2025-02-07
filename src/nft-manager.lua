@@ -14,7 +14,7 @@ local function NFTManager(deps)
     local stored_nfts = {}
 
     -- Public methods
-    function self.handleNFTCount()
+    function self.handleNFTCount(msg)
         local count = #stored_nfts
         return AOUtils.reply(count)
     end
