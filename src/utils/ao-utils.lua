@@ -26,7 +26,17 @@ end
 
 -- Public methods
 function AOUtils.reply(data)
-    return Handlers.utils.reply(data)
+    if type(data) == "string" or type(data) == "table" then
+        return Handlers.utils.reply(data)
+    elseif type(data) == "number" then
+        return Handlers.utils.reply(tostring(data))
+    elseif type(data) == "boolean" then
+        return Handlers.utils.reply(tostring(data))
+    elseif data == nil then
+        return Handlers.utils.reply("")
+    else
+        error("Invalid data type for reply: " .. type(data))
+    end
 end
 
 function AOUtils.sendError(target, message)
